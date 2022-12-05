@@ -14,11 +14,26 @@ class FBTLScreenshots {
   static const kTimeout = Duration(seconds: 10);
   static const kTimeoutResult = <int>[];
   final _binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  bool _connected = false;
+
+  /// Warms up the connection to the screenshot handler.
+  Future<void> connect() async {
+    if (!_connected) {
+      if (Platform.isAndroid) {
+        await FBTLScreenshotsPlatform.instance.connect();
+      }
+      _connected = true;
+    }
+  }
 
   /// Takes a screenshot with the given name.
   /// On iOS, the resulting screenshot is attached to the xctest results.
   /// On Android, the screenshot is written to the external storage directory.
   Future<void> takeScreenshot(WidgetTester tester, String name) async {
+    if (!_connected) {
+      throw FBTLScreenshotsException(
+          'Call connect() before taking screenshots');
+    }
     if (Platform.isAndroid) {
       return _takeAndroidScreenshot(tester, name);
     } else if (Platform.isIOS) {

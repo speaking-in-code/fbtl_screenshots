@@ -1,6 +1,6 @@
 name: fbtl_screenshots
 description: A package for taking screenshots of Flutter apps using Firebase Test Lab.
-version: 0.0.1
+version: 0.0.2
 repository: https://github.com/speaking-in-code/fbtl_screenshots
 
 environment:

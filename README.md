@@ -15,7 +15,7 @@ pubspec.yaml file to add a dev dependency on fbtl_screenshots:
 
 ```
 dev_dependencies:
-  fbtl_screenshots: ^0.0.1
+  fbtl_screenshots: ^0.0.2
 ```
 
 Then edit your integration_test/example_test.dart files to add calls to
@@ -26,6 +26,7 @@ import 'package:fbtl_screenshots/fbtl_screenshots.dart';
 ...
 void main() {
   final _screenshots = FBTLScreenshots();
+  await _screenshots.connect();
   
   testWidgets('screenshot', (WidgetTester tester) async {
     // Build the app.

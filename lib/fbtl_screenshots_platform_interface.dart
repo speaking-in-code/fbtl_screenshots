@@ -23,6 +23,10 @@ abstract class FBTLScreenshotsPlatform extends PlatformInterface {
     _instance = instance;
   }
 
+  Future<void> connect() {
+    throw UnimplementedError('connect() has not been implemented.');
+  }
+
   Future<List<int>?> takeScreenshot() {
     throw UnimplementedError('takeScreenshot() has not been implemented.');
   }

@@ -10,6 +10,11 @@ class MethodChannelFBTLScreenshots extends FBTLScreenshotsPlatform {
   final methodChannel = const MethodChannel('fbtl_screenshots');
 
   @override
+  Future<void> connect() async {
+    await methodChannel.invokeMethod<void>('connect');
+  }
+
+  @override
   Future<List<int>?> takeScreenshot() async {
     final List<int>? png = await methodChannel.invokeMethod<List<int>?>('takeScreenshot');
     return png;
